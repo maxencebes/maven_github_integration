@@ -1,0 +1,30 @@
+name: Build and deploy with maven and JFrog CLI
+
+on: [push]
+
+permissions:
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v4
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+        with:
+          oidc-provider-name: github-maxenceb
+
+      - name: configure CLI
+        run: jf mvn-config --repo-resolve-releases ${{ env.ARTIFACTORY_VIRTUAL_RELEASE_REPO }} --repo-resolve-snapshots ${{ env.ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO }} --repo-deploy-releases ${{ env.ARTIFACTORY_VIRTUAL_RELEASE_REPO }} --repo-deploy-snapshots ${{ env.ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO }}
+
+      - name: build and publish
+        run: |
+          jf mvn clean install
+          jf rt bce
+          jf rt build-add-git
