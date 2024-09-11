@@ -1,4 +1,4 @@
-name: maxenceb_maven_build
+name: github_maven_build
 
 on: [push]
 
@@ -20,6 +20,10 @@ jobs:
         with:
           oidc-provider-name: github-maxenceb
 
+      - name: Curation audit
+        run: |
+          jf curation-audit
+
       - name: audit
         run: |
           jf audit
@@ -36,4 +40,4 @@ jobs:
 
       - name: scan build
         run: |
-          jf build-scan ${{ env.JFROG_CLI_BUILD_NAME }} ${{ env.JFROG_CLI_BUILD_NUMBER }}
+          jf build-scan ${{ env.JFROG_CLI_BUILD_NAME }} ${{ env.JFROG_CLI_BUILD_NUMBER }} --vuln
