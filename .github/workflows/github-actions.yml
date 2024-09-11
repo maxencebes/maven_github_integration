@@ -21,7 +21,7 @@ jobs:
           oidc-provider-name: github-maxenceb
 
       - name: configure CLI
-        run: jf mvn-config --repo-resolve-releases ${{ env.ARTIFACTORY_VIRTUAL_RELEASE_REPO }} --repo-resolve-snapshots ${{ env.ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO }} --repo-deploy-releases ${{ env.ARTIFACTORY_VIRTUAL_RELEASE_REPO }} --repo-deploy-snapshots ${{ env.ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO }}
+        run: jf mvn-config --repo-resolve-releases maxenceb-maven-virtual --repo-resolve-snapshots maxenceb-maven-virtual --repo-deploy-releases maxenceb-maven-virtual --repo-deploy-snapshots maxenceb-maven-virtual
 
       - name: build and publish
         run: |
