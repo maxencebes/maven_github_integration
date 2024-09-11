@@ -20,16 +20,16 @@ jobs:
         with:
           oidc-provider-name: github-maxenceb
 
-      - name: Curation audit
-        run: |
-          jf curation-audit
-
       - name: audit
         run: |
           jf audit
 
       - name: configure CLI
         run: jf mvn-config --repo-resolve-releases maxenceb-maven-virtual --repo-resolve-snapshots maxenceb-maven-virtual --repo-deploy-releases maxenceb-maven-virtual --repo-deploy-snapshots maxenceb-maven-virtual
+
+      - name: Curation audit
+        run: |
+          jf curation-audit
 
       - name: build and publish
         run: |
