@@ -20,6 +20,10 @@ jobs:
         with:
           oidc-provider-name: github-maxenceb
 
+      - name: audit
+        run: |
+          jf audit
+
       - name: configure CLI
         run: jf mvn-config --repo-resolve-releases maxenceb-maven-virtual --repo-resolve-snapshots maxenceb-maven-virtual --repo-deploy-releases maxenceb-maven-virtual --repo-deploy-snapshots maxenceb-maven-virtual
 
@@ -28,3 +32,7 @@ jobs:
           jf mvn clean install
           jf rt bce
           jf rt build-add-git
+
+      - name: scan build
+        run: |
+          jf bs
