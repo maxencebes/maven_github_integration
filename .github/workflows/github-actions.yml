@@ -1,4 +1,4 @@
-name: Build and deploy with maven and JFrog CLI
+name: maxenceb_maven_build
 
 on: [push]
 
