@@ -32,7 +32,8 @@ jobs:
           jf mvn clean install
           jf rt bce
           jf rt build-add-git
+          jf rt bp
 
       - name: scan build
         run: |
-          jf bs
+          jf build-scan ${{ env.JFROG_CLI_BUILD_NAME }} ${{ env.JFROG_CLI_BUILD_NUMBER }}
