@@ -1,6 +1,6 @@
 name: github_maven_build
 
-on: [push]
+on: [push, workflow_dispatch]
 
 permissions:
   id-token: write
