@@ -22,7 +22,7 @@ jobs:
 
       - name: audit
         run: |
-          jf audit
+          jf audit --watches maxenceb-maven-watch
 
       - name: configure CLI
         run: jf mvn-config --repo-resolve-releases maxenceb-maven-virtual --repo-resolve-snapshots maxenceb-maven-virtual --repo-deploy-releases maxenceb-maven-virtual --repo-deploy-snapshots maxenceb-maven-virtual
